@@ -1,0 +1,20 @@
+---
+- name: Print state
+  debug:
+    msg: "ibmstreamsjob-operator received event state: {{ state }}"
+
+######################################
+# SUBMIT IBM Streams Job
+######################################
+- name: Include submit_job
+  block:
+    - include_tasks: submit_job.yml
+  when: state == "present"
+
+######################################
+# CANCEL IBM Streams Job
+######################################
+- name: Include cancel_job
+  block:
+    - include_tasks: cancel_job.yml
+  when: state == "absent"

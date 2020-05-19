@@ -1,0 +1,5 @@
+---
+- version: v1
+  group: ibmstreamsjob.operator.bmwilli
+  kind: IBMStreamsJob
+  role: /opt/ansible/roles/ibmstreamsjob

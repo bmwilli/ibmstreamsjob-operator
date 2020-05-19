@@ -1,0 +1,7 @@
+apiVersion: ibmstreamsjob.operator.bmwilli/v1
+kind: IBMStreamsJob
+metadata:
+  name: example-ibmstreamsjob
+spec:
+  sab: https://github.com/bmwilli/streams/blob/master/spl/SimpleJob/output/SimpleJob.sab?raw=true
+

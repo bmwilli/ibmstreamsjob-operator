@@ -1,0 +1,4 @@
+# IBM Streams Cancel Job
+- name: "Request to cancel job namespace ({{ meta.namespace }}), name ({{ meta.name }})"
+  debug:
+    msg: "{{ hostvars | to_nice_json }}"

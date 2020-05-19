@@ -1,0 +1,4 @@
+# IBM Streams Submit Job
+- name: "Request to submit job namespace ({{ meta.namespace }}), name ({{ meta.name }})"
+  debug:
+    msg: "{{ hostvars | to_nice_json }}"
