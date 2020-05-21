@@ -3,3 +3,7 @@
   group: ibmstreamsjob.operator.bmwilli
   kind: IBMStreamsJob
   role: /opt/ansible/roles/ibmstreamsjob
+  finalizer:
+    name: finalizer.ibmstreamsjob.operator.bmwilli
+    vars:
+      state: absent

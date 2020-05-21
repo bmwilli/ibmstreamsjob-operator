@@ -1,5 +1,5 @@
 ---
-- name: Print state
+- name: Startup Info
   debug:
     msg: "ibmstreamsjob-operator received event state: {{ state }}"
 

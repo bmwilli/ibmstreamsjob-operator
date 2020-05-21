@@ -16,15 +16,14 @@ spec:
     status: {}
   validation:
     openAPIV3Schema:
-      #type: object
-      x-kubernetes-preserve-unknown-fields: true
-      properties:
-        spec:
-          properties:
-            sab:
-              type: string
-          required:
-            - sab
+      spec:
+        type: object
+        x-kubernetes-preserve-unknown-fields: true
+        properties:
+          sab:
+            type: string
+        required:
+          - sab
   versions:
   - name: v1
     served: true
