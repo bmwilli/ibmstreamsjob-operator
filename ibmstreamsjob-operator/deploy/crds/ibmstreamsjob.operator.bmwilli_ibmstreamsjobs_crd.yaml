@@ -29,11 +29,18 @@ spec:
     served: true
     storage: true
   additionalPrinterColumns:
-    - name: status
+    - name: State
+      type: string
+      description: The state of the IBM Streams IBMStreams job kubernetes object
+      JSONPath: .status.k8s_state
+    - name: Status
       type: string
       description: The status of the IBM Streams IBMStreams job
-      JSONPath: .status.status
-    - name: health
+      JSONPath: .status.job_status
+    - name: Health
       type: string  
       description: The aggregated health of PEs in IBM Streams job
-      JSONPath: .status.health
+      JSONPath: .status.job_health
+    - name: Age
+      type: date
+      JSONPath: .metadata.creationTimestamp      

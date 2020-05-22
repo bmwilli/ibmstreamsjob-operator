@@ -1,0 +1,8 @@
+- k8s_status:
+    api_version: "{{ api_version }}"
+    kind: IBMStreamsJob
+    name: "{{ meta.name }}"
+    namespace: "{{ meta.namespace }}"
+    status:
+      job_status: "{{ (job_status == 'Unknown' or job_status == '') | ternary('Initializing', job_status) }}"
+  ignore_errors: true

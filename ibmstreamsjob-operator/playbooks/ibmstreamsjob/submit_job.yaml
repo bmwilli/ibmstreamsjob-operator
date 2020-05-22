@@ -1,0 +1,32 @@
+# IBM Streams Submit Job
+- name: "Request to submit job namespace ({{ meta.namespace }}), name ({{ meta.name }})"
+  debug:
+    msg: "Submit the job..."
+
+- name: Set k8s state
+  include_tasks: set_k8s_state.yaml
+  vars:
+    k8s_state: "pulling sab"
+
+# first grab sab
+- name: "Download sab"
+  get_url:
+    url: "{{ sab }}"
+    dest: "/tmp/{{ meta.name }}.sab"
+  register: get_sab
+  ignore_errors: true
+  #when: job_exists.status == 404 and job_exists.json.status == "failure"
+
+
+
+  #submit to streams if job does not exist
+- name: "Submit job [{{ jmxconnect }}"
+  shell: java -jar {{ streams_jmx_client}} -l debug -j {{ jmxconnect }} --jmxssloption {{ streams_ssloption }} --jmxhttpport {{ streams_jmx_httpport }} -u {{ streams_username }} --password {{ streams_password }} submitjob -i {{ streams_instance_id }} -f /tmp/{{ meta.name }}.sab --jobname {{ meta.name }}
+  register: submit_job_output
+  ignore_errors: true
+  failed_when: "'[ERROR]' in submit_job_output.stdout or '[ERROR]' in submit_job_output.stderr"
+  #when: job_exists.status == 404 and job_exists.json.status == "failure" and get_minio.status_code is defined and get_minio.status_code == 200
+
+- name: submit output 
+  debug:
+    var: submit_job_output 

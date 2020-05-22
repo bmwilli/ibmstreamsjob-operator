@@ -2,7 +2,8 @@
 - version: v1
   group: ibmstreamsjob.operator.bmwilli
   kind: IBMStreamsJob
-  role: /opt/ansible/roles/ibmstreamsjob
+  #role: /opt/ansible/roles/ibmstreamsjob
+  playbook: /opt/ansible/playbooks/ibmstreamsjob/main.yaml
   finalizer:
     name: finalizer.ibmstreamsjob.operator.bmwilli
     vars:

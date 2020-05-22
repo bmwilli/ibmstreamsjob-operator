@@ -1,0 +1,30 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Manage IBM Streams Job
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    state: present
+    api_version: ibmstreamsjob.operator.bmwilli/v1
+    jmxconnect: service:jmx:jmxmp://10.75.16.206:32399
+    streams_username: bmwilli 
+    streams_password: ou812bmw
+    streams_instance_id: stream1
+    streams_jmx_client: /Users/bmwilli/git/streamsx.jmxclients/streams-jmx-client/target/executable-streams-jmx-client.jar
+    streams_ssloption: TLSv1.2
+    streams_jmx_httpport: 31819
+
+  tasks:
+
+  - name: Startup Info
+    debug:
+      msg: "ibmstreamsjob-operator received event state: {{ state }}"
+
+  - when: state == "present"
+    block:
+      - include_tasks: submit_job.yaml
+
+  - when: state == "absent"
+    block:
+      - include_tasks: cancel_job.yaml      
